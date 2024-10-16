@@ -2,10 +2,10 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.viewTasks = viewTasks;
 exports.addTask = addTask;
-exports.editTask = editTask;
 exports.searchTasks = searchTasks;
+const taskMenus_1 = require("../src/taskMenus");
 const taskHelpers_1 = require("./taskHelpers");
-function viewTasks(status, rl, tasks, showMenu) {
+function viewTasks(status, rl, tasks) {
     console.clear();
     const filteredTasks = (status === 1) ? tasks : tasks.filter(task => task.status === (status ? status - 1 : 0));
     if (filteredTasks.length === 0) {
@@ -21,14 +21,14 @@ function viewTasks(status, rl, tasks, showMenu) {
         const task = filteredTasks[taskIndex];
         if (option === '0' || !task) {
             console.log(option === '0' ? '' : 'Número de tarea no válido.');
-            showMenu(rl, tasks);
+            (0, taskMenus_1.showMenu)(rl, tasks);
         }
         else {
-            editTask(task, rl, tasks, showMenu);
+            editTask(task, rl, tasks);
         }
     });
 }
-function addTask(rl, tasks, showMenu) {
+function addTask(rl, tasks) {
     rl.question('Ingrese el título de la tarea: ', (title) => {
         rl.question('Ingrese la descripción de la tarea (opcional): ', (description) => {
             rl.question('Ingrese el vencimiento de la tarea (opcional, formato DD/MM/AAAA): ', (expiration) => {
@@ -47,14 +47,13 @@ function addTask(rl, tasks, showMenu) {
                     tasks.push(newTask);
                     console.clear();
                     console.log('Tarea agregada.');
-                    showMenu(rl, tasks);
+                    (0, taskMenus_1.showMenu)(rl, tasks);
                 });
             });
         });
     });
 }
-// Función para editar una tarea existente
-function editTask(task, rl, tasks, showMenu) {
+function editTask(task, rl, tasks) {
     console.log(`Editando la tarea: ${task.title}\n`);
     rl.question('Nuevo título (dejar vacío para mantener el actual): ', (newTitle) => {
         rl.question('Nueva descripción (dejar vacío para mantener la actual): ', (newDescription) => {
@@ -64,30 +63,30 @@ function editTask(task, rl, tasks, showMenu) {
                     rl.question('Nueva dificultad (1: Fácil, 2: Medio, 3: Difícil, dejar vacío para mantener el actual): ', (newDifficulty) => {
                         task.title = newTitle || task.title;
                         task.description = newDescription || task.description;
-                        task.status = newStatus ? parseInt(newStatus) : task.status; // Se asigna el nuevo estado si no es vacío
+                        task.status = newStatus ? parseInt(newStatus) : task.status;
                         task.expiration = validExpiration || task.expiration;
-                        task.difficulty = newDifficulty ? parseInt(newDifficulty) : task.difficulty; // Se asigna la nueva dificultad si no es vacío
+                        task.difficulty = newDifficulty ? parseInt(newDifficulty) : task.difficulty;
                         task.lastEditedAt = new Date();
                         console.log('\nTarea actualizada correctamente.\n');
-                        showMenu(rl, tasks); // Regresa al menú principal
+                        (0, taskMenus_1.showMenu)(rl, tasks);
                     });
                 });
             });
         });
     });
 }
-function searchTasks(rl, tasks, showMenu) {
+function searchTasks(rl, tasks) {
     rl.question('Introduce el título de una tarea para buscarla: ', (keyword) => {
         const trimmedKeyword = keyword.trim();
         if (trimmedKeyword === '') {
             console.log('No ingresaste ninguna palabra clave.');
-            return showMenu(rl, tasks);
+            return (0, taskMenus_1.showMenu)(rl, tasks);
         }
         const results = tasks.filter(task => task.title.toLowerCase().includes(trimmedKeyword.toLowerCase()) ||
             (task.description && task.description.toLowerCase().includes(trimmedKeyword.toLowerCase())));
         if (results.length > 0) {
             results.forEach((task, index) => {
-                console.log(`${index + 1}. ${task.title} [${task.status}] - ${task.description || 'Sin descripción'}`);
+                console.log(`${index + 1}. ${task.title} - Estado: ${(0, taskHelpers_1.showStatus)(task.status)}`);
             });
         }
         else {
@@ -95,7 +94,7 @@ function searchTasks(rl, tasks, showMenu) {
         }
         rl.question('¿Deseas volver al menú? (si/no): ', (answer) => {
             if (answer.toLowerCase() === 'si') {
-                showMenu(rl, tasks);
+                (0, taskMenus_1.showMenu)(rl, tasks);
             }
             else {
                 rl.close();

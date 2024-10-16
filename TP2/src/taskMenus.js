@@ -15,10 +15,10 @@ function showMenu(rl, tasks) {
                 viewTasksMenu(rl, tasks);
                 break;
             case '2':
-                (0, taskFuctions_1.searchTasks)(rl, tasks, showMenu);
+                (0, taskFuctions_1.searchTasks)(rl, tasks);
                 break;
             case '3':
-                (0, taskFuctions_1.addTask)(rl, tasks, showMenu);
+                (0, taskFuctions_1.addTask)(rl, tasks);
                 break;
             case '0':
                 rl.close();
@@ -44,7 +44,7 @@ function viewTasksMenu(rl, tasks) {
             showMenu(rl, tasks);
         }
         else {
-            (0, taskFuctions_1.viewTasks)(status, rl, tasks, showMenu);
+            (0, taskFuctions_1.viewTasks)(status, rl, tasks);
         }
     });
 }

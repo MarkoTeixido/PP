@@ -29,5 +29,5 @@ const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout,
 });
-const tasks = [];
+const tasks = []; // Usamos un arreglo de objetos sin interfaz
 (0, taskMenus_1.showMenu)(rl, tasks);
