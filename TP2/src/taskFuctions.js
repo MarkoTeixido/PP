@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.viewTasks = viewTasks;
 exports.addTask = addTask;
 exports.searchTasks = searchTasks;
-const taskMenus_1 = require("../src/taskMenus");
+const taskMenus_1 = require("./taskMenus");
 const taskHelpers_1 = require("./taskHelpers");
 function viewTasks(status, rl, tasks) {
     console.clear();
@@ -86,7 +86,7 @@ function searchTasks(rl, tasks) {
             (task.description && task.description.toLowerCase().includes(trimmedKeyword.toLowerCase())));
         if (results.length > 0) {
             results.forEach((task, index) => {
-                console.log(`${index + 1}. ${task.title} - Estado: ${(0, taskHelpers_1.showStatus)(task.status)}`);
+                console.log(`${index + 1}. ${task.title} - ${(0, taskHelpers_1.showStatus)(task.status)}`);
             });
         }
         else {

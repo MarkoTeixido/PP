@@ -1,6 +1,8 @@
+//  Importaciones necesarias para que funcione el programa
 import * as readline from 'readline';
 import { viewTasks, addTask, searchTasks } from './taskFuctions';
 
+// Función principal que muestra el menú de opciones para gestionar tareas.
 export function showMenu(rl: readline.Interface, tasks: any[]): void {
     console.clear();
     console.log('\n¿Qué deseas hacer?\n');
@@ -31,6 +33,7 @@ export function showMenu(rl: readline.Interface, tasks: any[]): void {
     });
 }
 
+// Submenú que permite seleccionar qué tipo de tareas se desean ver.
 function viewTasksMenu(rl: readline.Interface, tasks: any[]): void {
     console.clear();
     console.log('\n¿Qué tareas deseas ver?\n');
