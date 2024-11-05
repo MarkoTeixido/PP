@@ -101,7 +101,7 @@ function searchTasks(rl, tasks, showMenu) {
         // Muestra las tareas que coinciden con la búsqueda o indica si no se encontró ninguna
         if (results.length > 0) {
             results.forEach((task, index) => {
-                console.log(`${index + 1}. ${task.title} [${task.status}] - ${task.description || 'Sin descripción'}`);
+                console.log(`${index + 1}. ${task.title} - ${task.status}`);
             });
         }
         else {
