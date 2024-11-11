@@ -1,9 +1,8 @@
-// taskFunctions.ts
 import * as readline from 'readline';
+import { Task } from './task';
 import { parseDate } from './taskHelpers';
-import { Task } from './taskInterface';
 
-export function viewTasks(status: number | null, rl: readline.Interface, tasks: Task[], showMenu: Function): void {
+function viewTasks(status: number | null, rl: readline.Interface, tasks: Task[], viewTaskMenu: Function) {
     console.clear();
 
     const filteredTasks = status === 1 ? tasks : tasks.filter(task => task.status === (status ? status - 1 : 0));
@@ -22,14 +21,14 @@ export function viewTasks(status: number | null, rl: readline.Interface, tasks: 
 
         if (option === '0' || !task) {
             console.log(option === '0' ? '' : 'Número de tarea no válido.');
-            showMenu(rl, tasks);
+            viewTaskMenu(rl, tasks);
         } else {
-            editTask(task, rl, tasks, showMenu);
+            editTask(task, rl, tasks, viewTaskMenu);
         }
     });
 }
 
-export function addTask(rl: readline.Interface, tasks: Task[], showMenu: Function): void {
+function addTask(rl: readline.Interface, tasks: Task[], showMenu: Function): void {
     rl.question('Ingrese el título de la tarea: ', (title) => {
         rl.question('Ingrese la descripción de la tarea (opcional): ', (description) => {
             rl.question('Ingrese el vencimiento de la tarea (opcional, formato DD/MM/AAAA): ', (expiration) => {
@@ -46,7 +45,7 @@ export function addTask(rl: readline.Interface, tasks: Task[], showMenu: Functio
     });
 }
 
-export function editTask(task: Task, rl: readline.Interface, tasks: Task[], showMenu: Function): void {
+function editTask(task: Task, rl: readline.Interface, tasks: Task[], showMenu: Function): void {
     console.log(`Editando la tarea: ${task.title}\n`);
 
     rl.question('Nuevo título (dejar vacío para mantener el actual): ', (newTitle) => {
@@ -71,7 +70,7 @@ export function editTask(task: Task, rl: readline.Interface, tasks: Task[], show
     });
 }
 
-export function searchTasks(rl: readline.Interface, tasks: Task[], showMenu: Function): void {
+function searchTasks(rl: readline.Interface, tasks: Task[], showMenu: Function): void {
     rl.question('Ingrese el término de búsqueda (por título): ', (searchTerm) => {
         console.clear();
         const results = tasks.filter(task => task.title.toLowerCase().includes(searchTerm.toLowerCase()));
@@ -84,8 +83,18 @@ export function searchTasks(rl: readline.Interface, tasks: Task[], showMenu: Fun
             });
         }
 
-        rl.question('\nPresiona [Enter] para volver al menú principal.', () => {
-            showMenu(rl, tasks);
+        rl.question('\n¿Deseas editar alguna tarea? Introduce el número o [0] para volver: ', (option) => {
+            const taskIndex = parseInt(option) - 1;
+            const task = results[taskIndex];
+
+            if (option === '0' || !task) {
+                console.log(option === '0' ? '' : 'Número de tarea no válido.');
+                showMenu(rl, tasks);
+            } else {
+                editTask(task, rl, tasks, showMenu);
+            }
         });
     });
 }
+
+export { viewTasks, addTask, editTask, searchTasks };

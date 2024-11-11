@@ -51,11 +51,9 @@ class Calculator {
 
           const result = this.calculate(a, operator, b);
           if (result !== null) {
-            // Mostrar el resultado final
             console.log(`Resultado: ${result}`);
           }
 
-          // Cerrar la interfaz de readline
           rl.close();
         });
       });
@@ -72,45 +70,33 @@ calculator.getInput();
 
 1 - Clases y Objetos:
 
-En OOP, las clases son plantillas para crear objetos. En el programa, 
-se definió la clase Calculator, que encapsula toda la funcionalidad de la calculadora. 
+En el programa, se definió la clase Calculator, que encapsula toda la funcionalidad de la calculadora. 
 Un objeto de esta clase (calculator) se creó para ejecutar las operaciones.
 
 2 - Encapsulamiento:
 
-El encapsulamiento es la práctica de ocultar los detalles internos de la implementación y 
-exponer solo lo necesario. En este caso, la lógica de cálculo se encapsuló dentro del método calculate, 
-y el estado del resultado se almacenó en el atributo result. 
+En este caso, la lógica de cálculo se encapsuló dentro del método 'calculate', y el estado del resultado se almacenó en el atributo 'result'. 
 Esto permite que el usuario interactúe con la calculadora sin necesidad de conocer los detalles internos de su funcionamiento.
 
 3 - Métodos:
 
-Los métodos son funciones que pertenecen a una clase. En el programa, se definieron dos métodos: 
-calculate para realizar la operación aritmética y getInput para manejar la interacción con el usuario. 
-Esta organización facilita la lectura y el mantenimiento del código, además de promover la reutilización.
+En el programa, se definieron dos métodos: 
+'calculate' para realizar la operación aritmética y 'getInput' para manejar la interacción con el usuario.
+
+*/
+
+/*
 
 Características de la OOP No Implementadas:
 
 1 - Herencia:
 
-La herencia permite que una clase (subclase) herede propiedades y métodos de otra clase (superclase). 
-En este ejercicio, no se implementó herencia porque la calculadora es una entidad autónoma y 
-no requería especialización o extensión de una clase base. Dado que el problema es sencillo y 
-no involucra múltiples tipos de calculadoras o funcionalidades adicionales, la herencia no era necesaria.
+En este ejercicio, no se implementó herencia porque la calculadora es una entidad independiente y 
+no requería especialización o extensión de una clase base.
 
 2 - Polimorfismo:
 
-El polimorfismo permite que métodos de diferentes clases tengan el mismo nombre pero se comporten de manera diferente. 
 En este caso, no se implementó polimorfismo porque la funcionalidad era específica para la clase Calculator y 
 no había otros tipos de operaciones o clases que lo requirieran.
-
--------
-
-En resumen, el programa de la calculadora utilizó las características fundamentales de la OOP, 
-como clases, encapsulamiento y métodos, para estructurar la lógica de manera modular y clara. 
-La herencia y el polimorfismo no se consideraron necesarios en este contexto, 
-ya que el problema era simple y no requería la complejidad que estas características traen. 
-Este enfoque permite un código más mantenible y escalable en el futuro si se desea ampliar la funcionalidad de la calculadora.
-
 
 */

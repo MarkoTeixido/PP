@@ -23,7 +23,6 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-// index.ts
 const readline = __importStar(require("readline"));
 const taskMenus_1 = require("./src/taskMenus");
 const rl = readline.createInterface({
@@ -31,4 +30,4 @@ const rl = readline.createInterface({
     output: process.stdout,
 });
 const tasks = [];
-(0, taskMenus_1.showMenu)(rl, tasks);
+(0, taskMenus_1.mainMenu)(rl, tasks);

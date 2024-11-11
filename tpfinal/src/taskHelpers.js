@@ -1,17 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getStatusText = getStatusText;
-exports.getDifficultyText = getDifficultyText;
 exports.parseDate = parseDate;
-// taskHelpers.ts
-function getStatusText(status) {
-    const levels = ['Pendiente', 'En Curso', 'Terminada', 'Cancelada'];
-    return levels[status - 1];
-}
-function getDifficultyText(difficulty) {
-    const levels = ['Fácil', 'Medio', 'Difícil'];
-    return levels[difficulty - 1];
-}
 function parseDate(dateString) {
     if (!dateString)
         return null;

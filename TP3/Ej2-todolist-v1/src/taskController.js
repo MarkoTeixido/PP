@@ -58,7 +58,7 @@ TaskController.prototype.viewTasksMenu = function () {
     });
 };
 
-// Mostrar tareas
+// Método para ver tareas
 TaskController.prototype.viewTasks = function (status) {
     console.clear();
     const filteredTasks = (status === 1) ? this.tasks : this.tasks.filter(task => task.status === (status ? status - 1 : 0));
@@ -84,7 +84,7 @@ TaskController.prototype.viewTasks = function (status) {
     });
 };
 
-// Añadir tarea
+// Método para agregar tareas
 TaskController.prototype.addTask = function () {
     this.rl.question('Ingrese el título de la tarea: ', (title) => {
         this.rl.question('Ingrese la descripción de la tarea (opcional): ', (description) => {
@@ -102,7 +102,7 @@ TaskController.prototype.addTask = function () {
     });
 };
 
-// Editar tarea
+// Método para editar tareas
 TaskController.prototype.editTask = function (task) {
     console.log(`Editando la tarea: ${task.title}\n`);
     this.rl.question('Nuevo título (dejar vacío para mantener el actual): ', (newTitle) => {
@@ -121,7 +121,7 @@ TaskController.prototype.editTask = function (task) {
     });
 };
 
-// Buscar tareas
+// Método para buscar tareas
 TaskController.prototype.searchTasks = function () {
     this.rl.question('Introduce el título de una tarea para buscarla: ', (keyword) => {
         const trimmedKeyword = keyword.trim();
@@ -154,4 +154,5 @@ TaskController.prototype.searchTasks = function () {
     });
 };
 
+//exporta taskController
 module.exports = { TaskController };

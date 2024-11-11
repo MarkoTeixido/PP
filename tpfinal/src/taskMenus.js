@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.showMenu = showMenu;
-const taskfunctions_1 = require("./taskfunctions");
-// El resto del archivo sigue igual
-function showMenu(rl, tasks) {
+exports.mainMenu = mainMenu;
+exports.viewTasksMenu = viewTasksMenu;
+const taskFunctions_1 = require("./taskFunctions");
+function mainMenu(rl, tasks) {
     console.clear();
     console.log('\n¿Qué deseas hacer?\n');
     console.log('[1] Ver Mis tareas');
@@ -16,17 +16,17 @@ function showMenu(rl, tasks) {
                 viewTasksMenu(rl, tasks);
                 break;
             case '2':
-                (0, taskfunctions_1.searchTasks)(rl, tasks, showMenu);
+                (0, taskFunctions_1.searchTasks)(rl, tasks, mainMenu);
                 break;
             case '3':
-                (0, taskfunctions_1.addTask)(rl, tasks, showMenu);
+                (0, taskFunctions_1.addTask)(rl, tasks, mainMenu);
                 break;
             case '0':
                 rl.close();
                 break;
             default:
                 console.log('\nOpción no válida\n');
-                showMenu(rl, tasks);
+                mainMenu(rl, tasks);
                 break;
         }
     });
@@ -40,12 +40,12 @@ function viewTasksMenu(rl, tasks) {
     console.log('[4] Ver tareas terminadas');
     console.log('[0] Volver al menú principal');
     rl.question('Elige una opción: ', (option) => {
-        const status = option === '0' ? null : parseInt(option);
-        if (status === null) {
-            showMenu(rl, tasks);
+        const statusTasks = option === '0' ? null : parseInt(option);
+        if (statusTasks === null) {
+            mainMenu(rl, tasks);
         }
         else {
-            (0, taskfunctions_1.viewTasks)(status, rl, tasks, showMenu);
+            (0, taskFunctions_1.viewTasks)(statusTasks, rl, tasks, viewTasksMenu);
         }
     });
 }

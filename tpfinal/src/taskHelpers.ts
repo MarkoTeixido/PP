@@ -1,15 +1,4 @@
-// taskHelpers.ts
-export function getStatusText(status: number): string {
-    const levels: string[] = ['Pendiente', 'En Curso', 'Terminada', 'Cancelada'];
-    return levels[status - 1];
-}
-
-export function getDifficultyText(difficulty: number): string {
-    const levels: string[] = ['Fácil', 'Medio', 'Difícil'];
-    return levels[difficulty - 1];
-}
-
-export function parseDate(dateString: string): Date | null {
+function parseDate(dateString: string): Date | null {
     if (!dateString) return null;
     const [day, month, year] = dateString.split('/');
     if (!day || !month || !year || isNaN(Number(day)) || isNaN(Number(month)) || isNaN(Number(year))) {
@@ -22,3 +11,5 @@ export function parseDate(dateString: string): Date | null {
     }
     return date;
 }
+
+export { parseDate };

@@ -1,13 +1,16 @@
+// Función para mostrar el estado de una tarea en forma de texto
 function showStatus(status) {
     const levels = ['Pendiente', 'En Curso', 'Terminada', 'Cancelada'];
     return levels[status - 1];
 }
 
+// Función para mostrar la dificultad de una tarea en forma de texto
 function showDifficulty(difficulty) {
     const levels = ['Fácil', 'Medio', 'Difícil'];
     return levels[difficulty - 1];
 }
 
+// Función para convertir una fecha en formato 'dd/mm/yyyy' a un objeto Date
 function parseDate(dateString) {
     if (!dateString) return null;
     const [day, month, year] = dateString.split('/');
@@ -22,4 +25,5 @@ function parseDate(dateString) {
     return date;
 }
 
+// Exporta las funciones
 module.exports = { showStatus, showDifficulty, parseDate };

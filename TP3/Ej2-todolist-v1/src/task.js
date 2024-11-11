@@ -10,7 +10,7 @@ function Task(title, description, expiration, difficulty) {
     this.difficulty = difficulty;
 }
 
-// Método para el prototipo de Task para permitir actualizaciones de la tarea
+// Método actualizar para el prototipo de Task
 Task.prototype.update = function (newTitle, newDescription, newStatus, newExpiration, newDifficulty) {
     this.title = newTitle || this.title;
     this.description = newDescription || this.description;

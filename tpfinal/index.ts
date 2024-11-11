@@ -1,7 +1,6 @@
-// index.ts
 import * as readline from 'readline';
-import { showMenu } from './src/taskMenus';
-import { Task } from './src/taskInterface';
+import { Task } from './src/task';
+import { mainMenu } from './src/taskMenus';
 
 const rl = readline.createInterface({
     input: process.stdin,
@@ -9,4 +8,4 @@ const rl = readline.createInterface({
 });
 
 const tasks: Task[] = [];
-showMenu(rl, tasks);
+mainMenu(rl, tasks);
